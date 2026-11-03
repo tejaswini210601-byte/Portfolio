@@ -26,7 +26,7 @@ export const PROFILE = {
   quote: "Building logical reasoning, mathematical thinking and independent problem-solving — one student at a time.",
   resume: asset("/Tejaswini_S_Resume.pdf"),
   github: "https://github.com/tejaswini210601-byte",
-  linkedin: "", // not in résumé — add your link here and the buttons appear automatically
+  linkedin: "https://www.linkedin.com/in/tejaswini-stemteacher/",
   languages: ["English", "Hindi", "Kannada", "Finnish (Beginner)"],
 };
 
