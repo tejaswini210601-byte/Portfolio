@@ -287,6 +287,7 @@ export type Achievement = {
   caption: string;
   detail: string;
   icon: "students" | "screen" | "calendar" | "grade" | "age" | "medal";
+  display?: string; // shown as-is instead of counting up
 };
 
 export const ACHIEVEMENTS: Achievement[] = [
@@ -317,7 +318,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     value: 17,
     suffix: "",
-    label: "Ages 5 to 17",
+    display: "5–17",
+    label: "Ages taught",
     caption: "Children taught across the full school range",
     detail: "Maths, coding, robotics, computer science",
     icon: "age",
@@ -325,7 +327,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     value: 10,
     suffix: "",
-    label: "Grades 5 to 10",
+    display: "5–10",
+    label: "School grades",
     caption: "CBSE Computer Science at Narayana e-Techno School",
     detail: "Python, Scratch and digital literacy",
     icon: "grade",
@@ -339,3 +342,57 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: "medal",
   },
 ];
+
+/* ------------------------------------------------------------------
+ * Parent / recruiter content (the site has a "For Parents / For Recruiters" switch).
+ * Facts are from the résumé; the friendly wording around them is just presentation.
+ * ------------------------------------------------------------------ */
+export type Audience = "parents" | "recruiters";
+
+export const HERO = {
+  parents: {
+    eyebrow: "Coding · Robotics · Maths for kids aged 5–17",
+    title: ["Where kids fall in love with", "coding, robots", "& maths."],
+    sub: "Hi, I'm Tejaswini! I've taught 500+ children in classrooms, workshops and live online classes, and I help every child build something they're proud to show you.",
+    primary: { label: "Ask about classes", href: `mailto:${PROFILE.email}?subject=${encodeURIComponent("Classes for my child")}` },
+    secondary: { label: "What kids learn", target: "learn" },
+  },
+  recruiters: {
+    eyebrow: "Mathematics Educator · Coding & Robotics Instructor · Curriculum Developer",
+    title: ["STEM educator &", "curriculum", "developer."],
+    sub: "6+ years teaching mathematics, coding and robotics to 500+ students, including 100+ live online sessions with US-based learners. Now doing an MSc in Information Technology in Finland.",
+    primary: { label: "Download résumé", href: PROFILE.resume, download: true },
+    secondary: { label: "See experience", target: "journey" },
+  },
+} as const;
+
+export const BUBBLES = {
+  parents: ["Hi! I'm Tejaswini 👋", "Shall we build a robot today? 🤖", "Maths is just a fun puzzle! 🧩", "500+ young coders and counting ✨"],
+  recruiters: ["Hi! I'm Tejaswini 👋", "6+ years of STEM teaching 📚", "I design curriculum, too ✏️", "Let's talk — my résumé is one click away!"],
+};
+
+/** What children develop (from the résumé summary). */
+export const KID_GAINS = [
+  { title: "Logical reasoning", text: "Thinking step by step, spotting patterns and explaining why.", color: "sky", icon: "logic" },
+  { title: "Mathematical thinking", text: "Numbers, shapes and puzzles become something to play with.", color: "sun", icon: "algebra" },
+  { title: "Computational skills", text: "Loops, conditions and events through games, apps and robots.", color: "mint", icon: "code" },
+  { title: "Independent problem-solving", text: "Trying, testing, debugging and trying again on their own.", color: "coral", icon: "puzzle" },
+] as const;
+
+/** What I teach (subjects + tools from the résumé). */
+export const LEARN_PATHS = [
+  { title: "Scratch & block coding", text: "Games and animations that teach programming logic, loops, conditions, events and debugging.", tools: ["Scratch", "PictoBlox", "Code.org", "Tynker"], color: "sun", icon: "blocks" },
+  { title: "Python & game making", text: "Moving from blocks to real code, then building their own games with Pygame.", tools: ["Python", "Pygame"], color: "sky", icon: "game" },
+  { title: "Robotics & electronics", text: "Hands-on robots with sensors and motors: line-followers, obstacle-avoiders and smart homes.", tools: ["Arduino", "LEGO EV3", "SPIKE Prime", "Makerzoid"], color: "coral", icon: "robot" },
+  { title: "Mobile apps", text: "Designing real phone apps with MIT App Inventor: event-driven programming, user interfaces and app logic.", tools: ["MIT App Inventor"], color: "mint", icon: "app" },
+  { title: "Web basics", text: "First web pages with HTML: structure, text, images and links.", tools: ["HTML"], color: "grape", icon: "code" },
+  { title: "Maths & Olympiad", text: "Arithmetic to algebra and geometry, plus puzzles, non-routine problems and Olympiad preparation.", tools: ["Algebra", "Geometry", "Number theory", "Olympiad preparation"], color: "pink", icon: "medal" },
+] as const;
+
+/** How I teach (from the résumé). */
+export const HOW_I_TEACH = [
+  { title: "Learn by building", text: "Project-based learning: every lesson ends with something the child made.", icon: "build" },
+  { title: "Personal attention", text: "Personalised instruction and mentoring, matched to each child's pace.", icon: "person" },
+  { title: "Parents in the loop", text: "I track each child's progress and share regular learning updates with parents.", icon: "chat" },
+  { title: "Online or in person", text: "Live online classes for international students, plus hands-on workshops in schools, NGOs and summer camps.", icon: "screen" },
+] as const;

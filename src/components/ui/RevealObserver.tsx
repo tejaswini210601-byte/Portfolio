@@ -17,9 +17,15 @@ export default function RevealObserver() {
     );
     const scan = () => document.querySelectorAll(".rv:not(.is-in), .rv-mask:not(.is-in)").forEach((el) => obs.observe(el));
     scan();
-    const t = setTimeout(scan, 600);
+    // sections can be re-ordered by the Parents/Recruiters switch, so re-scan when the page changes
+    let pending = 0;
+    const mo = new MutationObserver(() => {
+      if (!pending) pending = window.setTimeout(() => ((pending = 0), scan()), 100);
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
     return () => {
-      clearTimeout(t);
+      mo.disconnect();
+      clearTimeout(pending);
       obs.disconnect();
     };
   }, []);

@@ -3,45 +3,29 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { PROFILE, asset } from "@/lib/data";
 
-// Fonts are self-hosted from src/fonts (no Google Fonts request at runtime).
-const interTight = localFont({
-  src: "../fonts/InterTight.woff2",
-  variable: "--font-inter-tight",
-  weight: "100 900",
-  display: "swap",
-});
-const instrument = localFont({
-  src: [
-    { path: "../fonts/InstrumentSerif-Regular.woff2", style: "normal", weight: "400" },
-    { path: "../fonts/InstrumentSerif-Italic.woff2", style: "italic", weight: "400" },
-  ],
-  variable: "--font-instrument",
-  display: "swap",
-});
-const jetbrains = localFont({
-  src: "../fonts/JetBrainsMono.woff2",
-  variable: "--font-jetbrains",
-  weight: "100 800",
-  display: "swap",
-});
+// Fonts are stored in src/fonts (no Google Fonts request at runtime).
+// Fredoka = round, friendly headings · Nunito = soft, readable body text.
+const fredoka = localFont({ src: "../fonts/Fredoka.woff2", variable: "--font-fredoka", weight: "300 700", display: "swap" });
+const nunito = localFont({ src: "../fonts/Nunito.woff2", variable: "--font-body", weight: "200 1000", display: "swap" });
 
 export const metadata: Metadata = {
-  title: `${PROFILE.name} — ${PROFILE.shortRole}`,
+  metadataBase: new URL("https://tejaswini210601-byte.github.io"),
+  title: `${PROFILE.name} | Coding, Robotics & Maths Educator`,
   description: PROFILE.resumeSummary,
   icons: { icon: asset("/favicon.svg") },
   openGraph: {
-    title: `${PROFILE.name} — ${PROFILE.shortRole}`,
-    description: PROFILE.role,
+    title: `${PROFILE.name} | Coding, Robotics & Maths Educator`,
+    description: "Helping kids aged 5–17 fall in love with coding, robotics and maths. 500+ students, 6+ years.",
     images: [asset("/og.jpg")],
     type: "website",
   },
 };
 
-export const viewport: Viewport = { themeColor: "#f4f2ee", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#fff8ee", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${interTight.variable} ${instrument.variable} ${jetbrains.variable}`}>
+    <html lang="en" className={`${fredoka.variable} ${nunito.variable}`}>
       <body>{children}</body>
     </html>
   );

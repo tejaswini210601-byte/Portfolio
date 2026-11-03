@@ -1,7 +1,11 @@
-# Tejaswini S — Portfolio
+# Tejaswini S | Coding, Robotics & Maths Educator
 
-A one-page personal portfolio: calm white, black and gray, with one small animation per section.
-All text comes from my résumé (`public/Tejaswini_S_Resume.pdf`).
+A friendly one-page portfolio for **two audiences**, with a **For Parents / For Recruiters** switch at the top.
+All facts come from my résumé (`public/Tejaswini_S_Resume.pdf`).
+
+- **Parents** see what kids learn, how I teach and how I keep parents updated.
+- **Recruiters** see impact numbers, experience, skills and the résumé first.
+- Tip: link straight to a view with `?for=recruiters` or `?for=parents` (great for job emails).
 
 ## Run it on your computer
 
@@ -10,47 +14,39 @@ npm install     # downloads the libraries (only needed once)
 npm run dev     # starts the site at http://localhost:3000
 ```
 
-`npm run build` makes the finished static site in the `out/` folder.
-
 ## Change the text
 
 Everything you read on the site lives in **one file: `src/lib/data.ts`**.
-Edit it, save it, and the site updates. Some examples:
-
-- Add GitHub / LinkedIn: fill in `github:` and `linkedin:` in `PROFILE`. The buttons show up by themselves.
-- Add a project: copy one block in `PROJECTS` and change the words.
-- Add a certificate: add a line to `CERTIFICATIONS`.
+`HERO`, `BUBBLES` (what the cartoon says), `KID_GAINS`, `LEARN_PATHS`, `HOW_I_TEACH`, `PROJECTS`, `TIMELINE`, `SKILLS`…
 
 ## How it's built
 
 | Folder / file | What it does |
 |---|---|
-| `src/app/layout.tsx` | The page shell: fonts, page title, share image |
-| `src/app/globals.css` | Colours, buttons, cards and the scroll-reveal effect, shared by every section |
 | `src/lib/data.ts` | **All the content** |
-| `src/lib/hooks.ts` | Small helpers: "is this on screen?" and "how far have I scrolled through this?" |
-| `src/lib/scroll.tsx` | Smooth scrolling (Lenis) |
-| `src/components/Navigation.tsx` | Top bar, sliding pill, progress line, mobile menu |
-| `src/components/hero/Hero.tsx` | First screen: portrait with logos orbiting it |
+| `src/lib/audience.tsx` | Remembers "parents" or "recruiters" (React context + localStorage) |
+| `src/components/App.tsx` | Puts the sections in a different order for each audience |
+| `src/components/art/Character.tsx` | **The interactive cartoon of me**: hand-drawn SVG. Head, eyes and hair follow the mouse/finger with parallax; she blinks; tap → she waves and talks |
+| `src/components/art/Kid.tsx`, `Robot.tsx` | Original cartoon kids and robot for the classroom scene |
 | `src/components/sections/*.tsx` | One file per section (below) |
-| `src/components/ui/TechLogo.tsx` | Brand logos and thin line icons |
-| `.github/workflows/deploy.yml` | Publishes the site to GitHub Pages on every push |
+| `src/app/globals.css` | Colours, chunky buttons, cards, pop-in animation |
+| `.github/workflows/deploy.yml` | Publishes the site on every push |
 
 ### Sections
 
-| # | Section | Animation |
-|---|---|---|
-| — | Hero | Logos slowly orbit the portrait |
-| 01 | About | Hanging ID card that swings with your mouse and flips over |
-| 02 | Skills | "Periodic table" of skills with filters and a detail panel |
-| 03 | Work | Project panels that open like an accordion |
-| 04 | Certifications | Rows fill with black on hover |
-| 05 | Experience | Timeline line draws itself as you scroll |
-| 06 | Achievements | Cards slide sideways while the section stays pinned; numbers count up |
-| 07 | Contact | Letters hop under the cursor, copy-email button, spinning badge |
+| Section | What's fun about it |
+|---|---|
+| Hero | Interactive cartoon me, 3D tilt, floating robot/blocks/π that move with the mouse |
+| For kids | Classroom scene: kids cheer and hearts float up on hover/tap |
+| What they learn | Six subject cards that lift and wiggle |
+| How I teach | Four steps on a dashed path |
+| Projects | Sticker-style project cards |
+| Impact | Numbers count up |
+| Experience | Road that draws itself as you scroll |
+| Skills | Filterable skill stickers with real logos |
+| Contact | Message changes for parents vs recruiters |
 
-Tech: Next.js 15, React 19, TypeScript, Tailwind CSS 4, and Lenis for smooth scrolling. No other animation libraries.
-The fonts (Inter Tight, Instrument Serif, JetBrains Mono) are stored in `src/fonts`, so the site loads no outside scripts.
+Tech: Next.js 15, React 19, TypeScript, Tailwind CSS 4, Lenis smooth scroll. Fonts: Fredoka + Nunito, stored in `src/fonts`.
 
 ## Publishing (GitHub Pages)
 
@@ -58,14 +54,10 @@ Push to the `main` branch → GitHub Actions builds the site and copies it to th
 `https://<username>.github.io/<repo-name>/`.
 One-time setup (already done): **Settings → Pages → Deploy from a branch → gh-pages / (root)**.
 
-## Hero video (optional, later)
-
-The original design has a talking video in the hero. This version uses a photo instead.
-To add a video later, put `hero.mp4` in `public/hero/` and swap the portrait in `Hero.tsx` for a `<video>` tag.
-
 ## Credits & licences
 
 - Brand logos: [Devicon](https://devicon.dev) (MIT, see `public/logos/LICENSE-devicon.txt`) and
   [Simple Icons](https://simpleicons.org) (CC0, see `public/logos/LICENSE-simple-icons.md`).
   All logos are trademarks of their owners.
-- Fonts: Inter Tight, Instrument Serif and JetBrains Mono (SIL Open Font License) via Fontsource.
+- Fonts: Fredoka and Nunito (SIL Open Font License) via Fontsource.
+- All illustrations (me, kids, robot) are original SVG drawings made for this site.
