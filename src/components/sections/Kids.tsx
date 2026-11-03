@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { KID_GAINS } from "@/lib/data";
-import Character from "../art/Character";
+import { asset } from "@/lib/data";
 import Kid, { type KidProps } from "../art/Kid";
 import Robot from "../art/Robot";
 import { ConceptIcon } from "../ui/TechLogo";
@@ -58,7 +58,8 @@ export default function Kids() {
           <div className="sc-board" aria-hidden="true">
             <span>if</span> <b>sensor</b> <span>then</span> <b>turn left</b>
           </div>
-          <div className="sc-teacher"><Character size={210} idleWave={false} label="Cartoon of Tejaswini teaching" /></div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="sc-teacher" src={asset("/hero/cutout.webp")} alt="" width={561} height={520} loading="lazy" />
           <div className="sc-kids">
             {KIDS.map((k, i) => (
               <div key={k.name} className="sc-kid" style={{ ["--i" as string]: i }}><Kid {...k} /></div>
@@ -85,8 +86,8 @@ export default function Kids() {
         .scene{position:relative;aspect-ratio:5/4.4;overflow:hidden;background:linear-gradient(#E0ECFF 0 58%,#FFE7B8 58%);cursor:pointer}
         .sc-board{position:absolute;top:8%;left:50%;transform:translateX(-50%);background:#1E1B4B;color:#fff;border-radius:16px;padding:12px 18px;font-family:var(--font-fredoka);font-size:clamp(13px,1.4vw,17px);white-space:nowrap;box-shadow:0 0 0 6px #fff,0 0 0 8px var(--ink)}
         .sc-board span{color:var(--sun)} .sc-board b{font-weight:500;color:#7CF5E0}
-        .sc-teacher{position:absolute;left:1%;bottom:17%;width:36%}
-        .sc-teacher .chr{width:100%}
+        .sc-teacher{position:absolute;left:-2%;bottom:17%;width:42%;height:auto;transition:transform .6s var(--bounce)}
+        .scene.cheer .sc-teacher{transform:translateY(-4px) rotate(-1.5deg)}
         .sc-kids{position:absolute;right:2%;bottom:12%;width:60%;display:grid;grid-template-columns:repeat(3,1fr);gap:0 4px;align-items:end}
         .sc-kid{transition:transform .5s var(--bounce);transition-delay:calc(var(--i)*60ms)}
         .sc-kid:nth-child(odd){transform:translateY(8%)}

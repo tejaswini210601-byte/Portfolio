@@ -353,7 +353,7 @@ export const HERO = {
   parents: {
     eyebrow: "Coding · Robotics · Maths for kids aged 5–17",
     title: ["Where kids fall in love with", "coding, robots", "& maths."],
-    sub: "Hi, I'm Tejaswini! I've taught 500+ children in classrooms, workshops and live online classes, and I help every child build something they're proud to show you.",
+    sub: "I've taught 500+ children in classrooms, workshops and live online classes, and I help every child build something they're proud to show you.",
     primary: { label: "Ask about classes", href: `mailto:${PROFILE.email}?subject=${encodeURIComponent("Classes for my child")}` },
     secondary: { label: "What kids learn", target: "learn" },
   },

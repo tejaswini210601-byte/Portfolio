@@ -26,8 +26,9 @@ Everything you read on the site lives in **one file: `src/lib/data.ts`**.
 | `src/lib/data.ts` | **All the content** |
 | `src/lib/audience.tsx` | Remembers "parents" or "recruiters" (React context + localStorage) |
 | `src/components/App.tsx` | Puts the sections in a different order for each audience |
-| `src/components/art/Character.tsx` | **The interactive cartoon of me**: hand-drawn SVG. Head, eyes and hair follow the mouse/finger with parallax; she blinks; tap → she waves and talks |
-| `src/components/art/Kid.tsx`, `Robot.tsx` | Original cartoon kids and robot for the classroom scene |
+| `src/components/sections/Hero.tsx` | **Cursor-tracking 3D hero**: picks one of 64 pre-made frames so my head turns towards your cursor (canvas, ~60fps, no video seeking) |
+| `scripts/build-hero-frames.py` | Cuts my Google Flow video into those 64 frames (+ looking-at-you frame and a cut-out). Run: `python3 scripts/build-hero-frames.py my-video.mov` |
+| `src/components/art/Kid.tsx`, `Robot.tsx` | Cartoon kids and robot for the classroom scene |
 | `src/components/sections/*.tsx` | One file per section (below) |
 | `src/app/globals.css` | Colours, chunky buttons, cards, pop-in animation |
 | `.github/workflows/deploy.yml` | Publishes the site on every push |
@@ -36,7 +37,7 @@ Everything you read on the site lives in **one file: `src/lib/data.ts`**.
 
 | Section | What's fun about it |
 |---|---|
-| Hero | Interactive cartoon me, 3D tilt, floating robot/blocks/π that move with the mouse |
+| Hero | My 3D head follows your cursor (on phones I glance around by myself), custom glowing cursor |
 | For kids | Classroom scene: kids cheer and hearts float up on hover/tap |
 | What they learn | Six subject cards that lift and wiggle |
 | How I teach | Four steps on a dashed path |
@@ -46,7 +47,7 @@ Everything you read on the site lives in **one file: `src/lib/data.ts`**.
 | Skills | Filterable skill stickers with real logos |
 | Contact | Message changes for parents vs recruiters |
 
-Tech: Next.js 15, React 19, TypeScript, Tailwind CSS 4, Lenis smooth scroll. Fonts: Fredoka + Nunito, stored in `src/fonts`.
+Tech: Next.js 15, React 19, TypeScript, Tailwind CSS 4, Lenis smooth scroll. Fonts: Fredoka + Nunito + Dancing Script, stored in `src/fonts`.
 
 ## Publishing (GitHub Pages)
 
@@ -60,4 +61,4 @@ One-time setup (already done): **Settings → Pages → Deploy from a branch →
   [Simple Icons](https://simpleicons.org) (CC0, see `public/logos/LICENSE-simple-icons.md`).
   All logos are trademarks of their owners.
 - Fonts: Fredoka and Nunito (SIL Open Font License) via Fontsource.
-- All illustrations (me, kids, robot) are original SVG drawings made for this site.
+- 3D portrait: generated with ChatGPT + Google Flow from my photo. Kids and robot: original SVG drawings.

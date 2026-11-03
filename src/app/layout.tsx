@@ -7,6 +7,7 @@ import { PROFILE, asset } from "@/lib/data";
 // Fredoka = round, friendly headings · Nunito = soft, readable body text.
 const fredoka = localFont({ src: "../fonts/Fredoka.woff2", variable: "--font-fredoka", weight: "300 700", display: "swap" });
 const nunito = localFont({ src: "../fonts/Nunito.woff2", variable: "--font-body", weight: "200 1000", display: "swap" });
+const script = localFont({ src: "../fonts/DancingScript-Bold.woff2", variable: "--font-script", weight: "700", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tejaswini210601-byte.github.io"),
@@ -21,11 +22,11 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: "#fff8ee", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#f1a323", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fredoka.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${fredoka.variable} ${nunito.variable} ${script.variable}`}>
       <body>{children}</body>
     </html>
   );
