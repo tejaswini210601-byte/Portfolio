@@ -54,9 +54,9 @@ The fonts (Inter Tight, Instrument Serif, JetBrains Mono) are stored in `src/fon
 
 ## Publishing (GitHub Pages)
 
-Push to the `main` branch → GitHub Actions builds the site → it goes live at
+Push to the `main` branch → GitHub Actions builds the site and copies it to the `gh-pages` branch → it goes live at
 `https://<username>.github.io/<repo-name>/`.
-One-time setup: in the repo, go to **Settings → Pages → Source** and choose **GitHub Actions**.
+One-time setup (already done): **Settings → Pages → Deploy from a branch → gh-pages / (root)**.
 
 ## Hero video (optional, later)
 

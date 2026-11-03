@@ -1,5 +1,6 @@
-# Every push to "main" rebuilds the site and publishes it on GitHub Pages.
-name: Deploy to GitHub Pages
+# Every push to "main" rebuilds the site and copies it to the "gh-pages" branch,
+# which GitHub Pages shows at https://<username>.github.io/<repo-name>/
+name: Publish site
 
 on:
   push:
@@ -7,16 +8,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write # lets this workflow update the gh-pages branch
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,19 +26,12 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # the site lives at https://<username>.github.io/<repo-name>/
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-      - run: touch out/.nojekyll
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Push the built site to gh-pages
+        run: |
+          cd out
+          touch .nojekyll
+          git init -q -b gh-pages
+          git add -A
+          git -c user.name="github-actions" -c user.email="github-actions@users.noreply.github.com" commit -q -m "Publish site from ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
